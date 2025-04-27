@@ -3,57 +3,272 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 120 61% 25%;
-    --foreground: 0 0% 100%;
-    
-    --card-background: 0 0% 100%;
-    --card-border: 0 0% 0%;
-    
-    --button-primary: 48 96% 53%;
-    --button-primary-foreground: 0 0% 0%;
-    
-    --button-secondary: 120 61% 25%;
-    --button-secondary-foreground: 0 0% 100%;
-  }
+:root {
+  --background: 120 61% 25%;
+  --foreground: 0 0% 100%;
+  --card-border: 0 0% 0%;
 }
 
 body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  background-color: #2b6b2c;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 .playing-card {
   aspect-ratio: 2.5/3.5;
   background: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   width: 80px;
-  height: 112px;
+  height: 120px;
+  position: relative;
 }
 
 .card-pile {
-  @apply relative;
   min-width: 80px;
+  position: relative;
 }
 
 .card-placeholder {
-  border: 2px dashed rgba(255,255,255,0.2);
-  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 5px;
   aspect-ratio: 2.5/3.5;
   width: 80px;
-  height: 112px;
+  height: 120px;
+  background-color: rgba(255,255,255,0.05);
 }
 
-.top-bar-button {
-  @apply px-3 py-1 rounded text-sm font-medium;
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  background-color: #2b6b2c;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.yellow-button {
-  @apply bg-[hsl(48,96%,53%)] text-black hover:brightness-95;
+.top-button {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  height: 28px;
+  display: flex;
+  align-items: center;
 }
 
 .green-button {
-  @apply border border-white/20 hover:bg-white/10;
+  background-color: #2b8b2c;
+  color: white;
+  border: none;
+}
+
+.green-button:hover {
+  background-color: #36a53c;
+}
+
+.yellow-button {
+  background-color: #f6b700;
+  color: black;
+  border: none;
+}
+
+.yellow-button:hover {
+  background-color: #ffcc00;
+}
+
+.hint-button {
+  background-color: #f6b700;
+  color: black;
+  border: none;
+}
+
+.hint-button:hover {
+  background-color: #ffcc00;
+}
+
+.undo-button {
+  background-color: #f6b700;
+  color: black;
+  border: none;
+}
+
+.undo-button:hover {
+  background-color: #ffcc00;
+}
+
+.dropzone {
+  border-radius: 5px;
+  aspect-ratio: 2.5/3.5;
+  width: 80px;
+  height: 120px;
+  background-color: rgba(255,255,255,0.05);
+  border: 1px dashed rgba(255,255,255,0.2);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  color: white;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.play-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.card-red {
+  color: #dc2626;
+}
+
+.card-black {
+  color: #000000;
+}
+
+.game-area {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.top-row {
+  display: flex;
+  gap: 16px;
+}
+
+.bottom-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card-stack {
+  position: relative;
+  display: inline-block;
+}
+
+.stacked-card {
+  position: absolute;
+}
+
+.card-back {
+  background-color: #d42c34;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.2) 5px, rgba(255,255,255,0.2) 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.card-back::before {
+  content: '';
+  width: 50px;
+  height: 50px;
+  border: 2px solid white;
+  transform: rotate(45deg);
+  position: absolute;
+  z-index: 1;
+}
+
+.card-logo {
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background: white;
+  padding: 2px 5px;
+  border-radius: 2px;
+}
+
+.score-display {
+  display: flex;
+  gap: 16px;
+}
+
+.score-item {
+  text-align: center;
+}
+
+.score-value {
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+.score-label {
+  font-size: 12px;
+}
+
+.card-content {
+  padding: 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-top-left {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.card-bottom-right {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transform: rotate(180deg);
+  line-height: 1;
+}
+
+.card-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

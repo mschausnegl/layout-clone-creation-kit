@@ -1,105 +1,96 @@
+
 import React from 'react';
 import Card from './Card';
 
 const GameArea = () => {
   return (
-    <div className="p-4">
-      <div className="flex gap-4 mb-8">
+    <div className="game-area">
+      {/* Top row: stock, waste and foundation piles */}
+      <div className="top-row">
         {/* Stock pile */}
         <div className="card-pile">
-          <Card faceDown className="w-full" />
+          <Card faceDown />
         </div>
         
-        {/* Waste pile */}
+        {/* Waste pile - empty space */}
         <div className="card-pile">
-          <Card value="K" suit="hearts" className="w-full" />
+          <div className="dropzone"></div>
         </div>
 
         {/* Spacer */}
         <div className="flex-1"></div>
         
-        {/* Foundation piles */}
+        {/* Foundation piles - 4 of them */}
         <div className="card-pile">
-          <div className="card-placeholder w-full"></div>
+          <div className="dropzone"></div>
         </div>
         <div className="card-pile">
-          <Card value="A" suit="hearts" className="w-full" />
+          <div className="dropzone"></div>
         </div>
         <div className="card-pile">
-          <div className="card-placeholder w-full"></div>
+          <div className="dropzone"></div>
         </div>
         <div className="card-pile">
-          <div className="card-placeholder w-full"></div>
+          <div className="dropzone"></div>
         </div>
       </div>
 
-      {/* Tableau */}
-      <div className="flex gap-4">
-        {/* First pile - cascading cards */}
-        <div className="card-pile">
-          <div className="relative">
-            <Card value="9" suit="clubs" className="w-full" />
-            <Card value="8" suit="diamonds" className="w-full absolute top-5" />
-            <Card value="7" suit="clubs" className="w-full absolute top-10" />
-          </div>
+      {/* Bottom row: tableau piles */}
+      <div className="bottom-row">
+        {/* First tableau pile */}
+        <div className="card-stack">
+          <Card value="8" suit="spades" />
         </div>
         
-        {/* Other tableau piles */}
-        <div className="card-pile">
-          <div className="relative">
-            <Card faceDown className="w-full" />
-            <Card value="Q" suit="spades" className="w-full absolute top-5" />
-          </div>
+        {/* Second tableau pile */}
+        <div className="card-stack">
+          <Card faceDown style={{ top: 0 }} />
+          <Card value="Q" suit="spades" style={{ top: '25px' }} />
         </div>
         
-        <div className="card-pile">
-          <div className="relative">
-            <Card faceDown className="w-full" />
-            <Card faceDown className="w-full absolute top-5" />
-            <Card value="J" suit="diamonds" className="w-full absolute top-10" />
-          </div>
+        {/* Third tableau pile */}
+        <div className="card-stack">
+          <Card faceDown style={{ top: 0 }} />
+          <Card faceDown style={{ top: '25px' }} />
+          <Card value="4" suit="diamonds" style={{ top: '50px' }} />
         </div>
         
-        <div className="card-pile">
-          <div className="relative">
-            <Card faceDown className="w-full" />
-            <Card faceDown className="w-full absolute top-5" />
-            <Card faceDown className="w-full absolute top-10" />
-            <Card value="10" suit="hearts" className="w-full absolute top-15" />
-          </div>
+        {/* Fourth tableau pile */}
+        <div className="card-stack">
+          <Card faceDown style={{ top: 0 }} />
+          <Card faceDown style={{ top: '25px' }} />
+          <Card faceDown style={{ top: '50px' }} />
+          <Card value="4" suit="hearts" style={{ top: '75px' }} />
         </div>
         
-        <div className="card-pile">
-          <div className="relative">
-            <Card faceDown className="w-full" />
-            <Card faceDown className="w-full absolute top-5" />
-            <Card faceDown className="w-full absolute top-10" />
-            <Card faceDown className="w-full absolute top-15" />
-            <Card value="2" suit="spades" className="w-full absolute top-20" />
-          </div>
+        {/* Fifth tableau pile */}
+        <div className="card-stack">
+          <Card faceDown style={{ top: 0 }} />
+          <Card faceDown style={{ top: '25px' }} />
+          <Card faceDown style={{ top: '50px' }} />
+          <Card faceDown style={{ top: '75px' }} />
+          <Card value="J" suit="spades" style={{ top: '100px' }} />
         </div>
         
-        <div className="card-pile">
-          <div className="relative">
-            <Card faceDown className="w-full" />
-            <Card faceDown className="w-full absolute top-5" />
-            <Card faceDown className="w-full absolute top-10" />
-            <Card faceDown className="w-full absolute top-15" />
-            <Card faceDown className="w-full absolute top-20" />
-            <Card value="6" suit="clubs" className="w-full absolute top-25" />
-          </div>
+        {/* Sixth tableau pile */}
+        <div className="card-stack">
+          <Card faceDown style={{ top: 0 }} />
+          <Card faceDown style={{ top: '25px' }} />
+          <Card faceDown style={{ top: '50px' }} />
+          <Card faceDown style={{ top: '75px' }} />
+          <Card faceDown style={{ top: '100px' }} />
+          <Card value="2" suit="clubs" style={{ top: '125px' }} />
         </div>
         
-        <div className="card-pile">
-          <div className="relative">
-            <Card faceDown className="w-full" />
-            <Card faceDown className="w-full absolute top-5" />
-            <Card faceDown className="w-full absolute top-10" />
-            <Card faceDown className="w-full absolute top-15" />
-            <Card faceDown className="w-full absolute top-20" />
-            <Card faceDown className="w-full absolute top-25" />
-            <Card value="5" suit="hearts" className="w-full absolute top-30" />
-          </div>
+        {/* Seventh tableau pile */}
+        <div className="card-stack">
+          <Card faceDown style={{ top: 0 }} />
+          <Card faceDown style={{ top: '25px' }} />
+          <Card faceDown style={{ top: '50px' }} />
+          <Card faceDown style={{ top: '75px' }} />
+          <Card faceDown style={{ top: '100px' }} />
+          <Card faceDown style={{ top: '125px' }} />
+          <Card value="9" suit="clubs" style={{ top: '150px' }} />
         </div>
       </div>
     </div>

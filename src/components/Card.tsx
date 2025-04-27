@@ -6,42 +6,91 @@ interface CardProps {
   value?: string;
   faceDown?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const Card: React.FC<CardProps> = ({ suit, value, faceDown = false, className = '' }) => {
+const Card: React.FC<CardProps> = ({ suit, value, faceDown = false, className = '', style = {} }) => {
   if (faceDown) {
     return (
-      <div className={`playing-card ${className}`}>
-        <img 
-          src="/lovable-uploads/498fa9b1-35be-460c-a3ae-db4c33540879.png" 
-          alt="Card back"
-          className="w-full h-full object-cover"
-        />
+      <div className={`playing-card card-back ${className}`} style={style}>
+        <div className="card-logo">♠♥</div>
       </div>
     );
   }
 
   const isRed = suit === 'hearts' || suit === 'diamonds';
+  const colorClass = isRed ? 'card-red' : 'card-black';
+  
   const suitSymbol = 
     suit === 'hearts' ? '♥' : 
     suit === 'diamonds' ? '♦' : 
     suit === 'clubs' ? '♣' : '♠';
   
+  // For face cards we need special rendering
+  const isFaceCard = ['J', 'Q', 'K'].includes(value || '');
+  
   return (
-    <div className={`playing-card bg-white relative ${className}`}>
-      <div className={`absolute top-1 left-1 flex flex-col items-center ${isRed ? 'text-red-600' : 'text-black'}`}>
+    <div className={`playing-card bg-white ${className}`} style={style}>
+      <div className={`card-top-left ${colorClass}`}>
         <div className="text-lg font-bold">{value}</div>
         <div className="text-lg">{suitSymbol}</div>
       </div>
       
-      <div className={`absolute bottom-1 right-1 flex flex-col items-center rotate-180 ${isRed ? 'text-red-600' : 'text-black'}`}>
+      <div className={`card-bottom-right ${colorClass}`}>
         <div className="text-lg font-bold">{value}</div>
         <div className="text-lg">{suitSymbol}</div>
       </div>
       
-      {(suit === 'hearts' || suit === 'diamonds' || suit === 'clubs' || suit === 'spades') && (
-        <div className={`absolute inset-0 flex items-center justify-center text-4xl ${isRed ? 'text-red-600' : 'text-black'}`}>
-          {suitSymbol}
+      {!isFaceCard && (
+        <div className={`card-center ${colorClass}`}>
+          {suit === 'hearts' || suit === 'diamonds' ? (
+            <div className="flex flex-wrap justify-center">
+              {value === '4' && (
+                <>
+                  <div className="w-1/2 text-center">{suitSymbol}</div>
+                  <div className="w-1/2 text-center">{suitSymbol}</div>
+                  <div className="w-1/2 text-center">{suitSymbol}</div>
+                  <div className="w-1/2 text-center">{suitSymbol}</div>
+                </>
+              )}
+              {value === '9' && (
+                <>
+                  {[...Array(9)].map((_, i) => (
+                    <div key={i} className="text-center mx-1">{suitSymbol}</div>
+                  ))}
+                </>
+              )}
+              {value === '2' && (
+                <>
+                  <div className="w-full text-center">{suitSymbol}</div>
+                  <div className="w-full text-center">{suitSymbol}</div>
+                </>
+              )}
+            </div>
+          ) : (
+            <div className="flex flex-wrap justify-center">
+              {value === '8' && (
+                <>
+                  {[...Array(8)].map((_, i) => (
+                    <div key={i} className="text-center mx-1">{suitSymbol}</div>
+                  ))}
+                </>
+              )}
+              {value === '2' && (
+                <>
+                  <div className="w-full text-center">{suitSymbol}</div>
+                  <div className="w-full text-center">{suitSymbol}</div>
+                </>
+              )}
+              {value === '9' && (
+                <>
+                  {[...Array(9)].map((_, i) => (
+                    <div key={i} className="text-center mx-1">{suitSymbol}</div>
+                  ))}
+                </>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

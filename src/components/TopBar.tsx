@@ -1,26 +1,34 @@
 
 import React from 'react';
-import { Undo } from 'lucide-react';
 
 const TopBar = () => {
   return (
-    <div className="flex items-center gap-2 p-2">
-      <div className="text-white font-bold">Solitaire</div>
+    <div className="top-bar">
+      <div className="font-bold text-xl mr-4">Solitaire</div>
       
-      <button className="green-button top-bar-button">New Game</button>
-      <button className="green-button top-bar-button">Undo</button>
-      <button className="green-button top-bar-button">Hint</button>
+      <button className="top-button green-button mr-1">Turn 1</button>
+      <button className="top-button green-button mr-1">Turn 3</button>
+      <div className="relative group">
+        <button className="top-button green-button">More ▼</button>
+      </div>
       
       <div className="flex-1"></div>
       
-      <button className="green-button top-bar-button">Turn 1</button>
-      <button className="green-button top-bar-button">Turn 3</button>
-      <button className="green-button top-bar-button">More Games</button>
+      <div className="relative group">
+        <button className="top-button green-button">New game ▼</button>
+      </div>
       
-      <button className="yellow-button top-bar-button flex items-center gap-1">
-        <span className="text-xs">★</span>
+      <div className="relative group">
+        <button className="top-button green-button">Settings ▼</button>
+      </div>
+      
+      <button className="top-button yellow-button flex items-center gap-1">
+        <span className="text-xs">⬜</span>
         Game of the Day
       </button>
+
+      <button className="top-button hint-button">Hint</button>
+      <button className="top-button undo-button">Undo</button>
     </div>
   );
 };
