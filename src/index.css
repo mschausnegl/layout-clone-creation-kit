@@ -17,6 +17,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* Card Styling */
 .playing-card {
   aspect-ratio: 2.5/3.5;
   background: white;
@@ -25,6 +26,14 @@ body {
   width: 80px;
   height: 120px;
   position: relative;
+  user-select: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.playing-card.draggable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .card-pile {
@@ -41,6 +50,7 @@ body {
   background-color: rgba(255,255,255,0.05);
 }
 
+/* Top Bar Styling */
 .top-bar {
   display: flex;
   align-items: center;
@@ -101,6 +111,7 @@ body {
   background-color: #ffcc00;
 }
 
+/* Dropzone Styling */
 .dropzone {
   border-radius: 5px;
   aspect-ratio: 2.5/3.5;
@@ -108,8 +119,17 @@ body {
   height: 120px;
   background-color: rgba(255,255,255,0.05);
   border: 1px dashed rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.foundation-hint {
+  font-size: 24px;
+  opacity: 0.3;
+}
+
+/* Footer Styling */
 .footer {
   position: fixed;
   bottom: 0;
@@ -139,6 +159,7 @@ body {
   padding: 4px;
 }
 
+/* Card Color Styling */
 .card-red {
   color: #dc2626;
 }
@@ -147,6 +168,7 @@ body {
   color: #000000;
 }
 
+/* Game Area Layout */
 .game-area {
   padding: 16px;
   display: flex;
@@ -165,85 +187,56 @@ body {
   margin-top: 16px;
 }
 
-/* Replace card-stack with tableau-stack for better overlap */
+/* Card Stacking */
 .tableau-stack {
   position: relative;
   width: 80px; /* Same width as cards */
-  height: auto;
+  min-height: 120px;
+  height: 300px; /* Approximate height for stacked cards */
 }
 
 .tableau-stack .playing-card {
   position: absolute;
   left: 0;
+  transition: transform 0.2s ease;
 }
 
+/* Card Back Styling */
 .card-back {
   background-color: #d42c34;
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.2) 5px, rgba(255,255,255,0.2) 10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.card-back::after {
-  content: '';
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  transform: rotate(45deg);
+.card-pattern {
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.2) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.2) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.2) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
 
-.card-back::before {
-  content: '';
-  width: 50px;
-  height: 50px;
-  border: 2px solid white;
-  transform: rotate(45deg);
-  position: absolute;
-  z-index: 1;
-}
-
-.card-logo {
-  color: red;
-  font-weight: bold;
-  font-size: 12px;
+.card-pattern::after {
+  content: '♠♥';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
-  background: white;
-  padding: 2px 5px;
-  border-radius: 2px;
+  font-size: 20px;
+  color: white;
+  background: #aa1f26;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
-.score-display {
-  display: flex;
-  gap: 16px;
-}
-
-.score-item {
-  text-align: center;
-}
-
-.score-value {
-  font-weight: bold;
-  color: #ffcc00;
-}
-
-.score-label {
-  font-size: 12px;
-}
-
-.card-content {
-  padding: 4px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
+/* Card Content Styling */
 .card-top-left {
   position: absolute;
   top: 4px;
@@ -265,14 +258,85 @@ body {
   line-height: 1;
 }
 
+.card-value {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.card-suit {
+  font-size: 16px;
+}
+
+/* Card Center Content */
 .card-center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 40px;
+  width: 80%;
+  height: 70%;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
 }
 
+.face-card {
+  font-size: 36px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+/* Patterns for number cards */
+.number-card {
+  justify-content: space-around;
+}
+
+.suit-symbol {
+  font-size: 16px;
+  margin: 2px;
+}
+
+/* Specific number card layouts */
+.number-2 {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 40px;
+}
+
+.number-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.number-8 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.number-9 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+/* Score display */
+.score-display {
+  display: flex;
+  gap: 16px;
+}
+
+.score-item {
+  text-align: center;
+}
+
+.score-value {
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+.score-label {
+  font-size: 12px;
+}
