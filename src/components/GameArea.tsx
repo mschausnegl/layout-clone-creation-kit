@@ -17,10 +17,10 @@ const GameArea = () => {
           <div className="dropzone"></div>
         </div>
 
-        {/* Spacer */}
-        <div className="flex-1"></div>
+        {/* Spacer - adjusted to be smaller */}
+        <div className="flex-1 max-w-[100px]"></div>
         
-        {/* Foundation piles - 4 of them */}
+        {/* Foundation piles - 4 of them - positioned closer to the left */}
         <div className="card-pile">
           <div className="dropzone"></div>
         </div>
@@ -35,28 +35,28 @@ const GameArea = () => {
         </div>
       </div>
 
-      {/* Bottom row: tableau piles */}
+      {/* Bottom row: tableau piles - with proper overlapping */}
       <div className="bottom-row">
         {/* First tableau pile */}
-        <div className="card-stack">
+        <div className="tableau-stack">
           <Card value="8" suit="spades" />
         </div>
         
         {/* Second tableau pile */}
-        <div className="card-stack">
+        <div className="tableau-stack">
           <Card faceDown style={{ top: 0 }} />
           <Card value="Q" suit="spades" style={{ top: '25px' }} />
         </div>
         
         {/* Third tableau pile */}
-        <div className="card-stack">
+        <div className="tableau-stack">
           <Card faceDown style={{ top: 0 }} />
           <Card faceDown style={{ top: '25px' }} />
           <Card value="4" suit="diamonds" style={{ top: '50px' }} />
         </div>
         
         {/* Fourth tableau pile */}
-        <div className="card-stack">
+        <div className="tableau-stack">
           <Card faceDown style={{ top: 0 }} />
           <Card faceDown style={{ top: '25px' }} />
           <Card faceDown style={{ top: '50px' }} />
@@ -64,7 +64,7 @@ const GameArea = () => {
         </div>
         
         {/* Fifth tableau pile */}
-        <div className="card-stack">
+        <div className="tableau-stack">
           <Card faceDown style={{ top: 0 }} />
           <Card faceDown style={{ top: '25px' }} />
           <Card faceDown style={{ top: '50px' }} />
@@ -73,7 +73,7 @@ const GameArea = () => {
         </div>
         
         {/* Sixth tableau pile */}
-        <div className="card-stack">
+        <div className="tableau-stack">
           <Card faceDown style={{ top: 0 }} />
           <Card faceDown style={{ top: '25px' }} />
           <Card faceDown style={{ top: '50px' }} />
@@ -83,7 +83,7 @@ const GameArea = () => {
         </div>
         
         {/* Seventh tableau pile */}
-        <div className="card-stack">
+        <div className="tableau-stack">
           <Card faceDown style={{ top: 0 }} />
           <Card faceDown style={{ top: '25px' }} />
           <Card faceDown style={{ top: '50px' }} />

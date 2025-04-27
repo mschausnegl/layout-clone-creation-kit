@@ -165,13 +165,16 @@ body {
   margin-top: 16px;
 }
 
-.card-stack {
+/* Replace card-stack with tableau-stack for better overlap */
+.tableau-stack {
   position: relative;
-  display: inline-block;
+  width: 80px; /* Same width as cards */
+  height: auto;
 }
 
-.stacked-card {
+.tableau-stack .playing-card {
   position: absolute;
+  left: 0;
 }
 
 .card-back {
@@ -272,3 +275,4 @@ body {
   justify-content: center;
   align-items: center;
 }
+
