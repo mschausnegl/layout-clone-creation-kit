@@ -29,6 +29,8 @@ body {
   background: white;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  width: 80px;
+  height: 112px;
 }
 
 .card-pile {
@@ -40,6 +42,8 @@ body {
   border: 2px dashed rgba(255,255,255,0.2);
   border-radius: 4px;
   aspect-ratio: 2.5/3.5;
+  width: 80px;
+  height: 112px;
 }
 
 .top-bar-button {

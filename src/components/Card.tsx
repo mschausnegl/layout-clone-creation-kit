@@ -22,13 +22,28 @@ const Card: React.FC<CardProps> = ({ suit, value, faceDown = false, className = 
   }
 
   const isRed = suit === 'hearts' || suit === 'diamonds';
+  const suitSymbol = 
+    suit === 'hearts' ? '♥' : 
+    suit === 'diamonds' ? '♦' : 
+    suit === 'clubs' ? '♣' : '♠';
   
   return (
-    <div className={`playing-card bg-white ${className}`}>
-      <div className={`p-1 text-lg font-bold ${isRed ? 'text-red-600' : 'text-black'}`}>
-        {value}
-        <span>{suit === 'hearts' ? '♥' : suit === 'diamonds' ? '♦' : suit === 'clubs' ? '♣' : '♠'}</span>
+    <div className={`playing-card bg-white relative ${className}`}>
+      <div className={`absolute top-1 left-1 flex flex-col items-center ${isRed ? 'text-red-600' : 'text-black'}`}>
+        <div className="text-lg font-bold">{value}</div>
+        <div className="text-lg">{suitSymbol}</div>
       </div>
+      
+      <div className={`absolute bottom-1 right-1 flex flex-col items-center rotate-180 ${isRed ? 'text-red-600' : 'text-black'}`}>
+        <div className="text-lg font-bold">{value}</div>
+        <div className="text-lg">{suitSymbol}</div>
+      </div>
+      
+      {(suit === 'hearts' || suit === 'diamonds' || suit === 'clubs' || suit === 'spades') && (
+        <div className={`absolute inset-0 flex items-center justify-center text-4xl ${isRed ? 'text-red-600' : 'text-black'}`}>
+          {suitSymbol}
+        </div>
+      )}
     </div>
   );
 };

@@ -7,23 +7,19 @@ const TopBar = () => {
     <div className="flex items-center gap-2 p-2">
       <div className="text-white font-bold">Solitaire</div>
       
+      <button className="green-button top-bar-button">New Game</button>
+      <button className="green-button top-bar-button">Undo</button>
+      <button className="green-button top-bar-button">Hint</button>
+      
+      <div className="flex-1"></div>
+      
       <button className="green-button top-bar-button">Turn 1</button>
       <button className="green-button top-bar-button">Turn 3</button>
-      <button className="green-button top-bar-button">More</button>
-      
-      <button className="green-button top-bar-button">New game</button>
-      <button className="green-button top-bar-button">Settings</button>
-      
-      <button className="yellow-button top-bar-button flex items-center gap-2">
-        <span className="material-icons text-sm">calendar_today</span>
-        Game of the Day
-      </button>
-      
-      <button className="yellow-button top-bar-button">Hint</button>
+      <button className="green-button top-bar-button">More Games</button>
       
       <button className="yellow-button top-bar-button flex items-center gap-1">
-        <Undo className="w-4 h-4" />
-        Undo
+        <span className="text-xs">★</span>
+        Game of the Day
       </button>
     </div>
   );
